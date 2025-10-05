@@ -1,0 +1,84 @@
+<div class="panier-container">
+  <h1>Mon Panier</h1>
+
+  <div *ngIf="chargement" class="chargement">
+    <p>Chargement du panier...</p>
+  </div>
+
+  <div *ngIf="!chargement && (!panier || panier.articles.length === 0)" class="panier-vide">
+    <p>Votre panier est vide</p>
+    <a routerLink="/shop" class="btn-continuer">Continuer les achats</a>
+  </div>
+
+  <div *ngIf="!chargement && panier && panier.articles.length > 0" class="panier-contenu">
+    <div class="articles-liste">
+      <div *ngFor="let article of panier.articles" class="article-panier">
+        <div class="article-image">
+          <img [src]="article.produit.image" [alt]="article.produit.nom" />
+        </div>
+
+        <div class="article-info">
+          <h3>{{ article.produit.nom }}</h3>
+          <p class="code">Code: {{ article.produit.code }}</p>
+          <p class="prix-unitaire">Prix unitaire: {{ article.produit.prix | number:'1.2-2' }} €</p>
+        </div>
+
+        <div class="article-quantite">
+          <label>Quantité</label>
+          <div class="quantite-controles">
+            <button
+              class="btn-quantite"
+              (click)="modifierQuantite(article, article.quantite - 1)"
+              [disabled]="article.quantite <= 1">
+              -
+            </button>
+            <input
+              type="number"
+              [value]="article.quantite"
+              (change)="modifierQuantite(article, +$any($event.target).value)"
+              min="1"
+              [max]="article.produit.quantite">
+            <button
+              class="btn-quantite"
+              (click)="modifierQuantite(article, article.quantite + 1)"
+              [disabled]="article.quantite >= article.produit.quantite">
+              +
+            </button>
+          </div>
+          <span class="stock-dispo">Stock: {{ article.produit.quantite }}</span>
+        </div>
+
+        <div class="article-total">
+          <p class="sous-total">{{ article.sousTotal | number:'1.2-2' }} €</p>
+        </div>
+
+        <div class="article-actions">
+          <button
+            class="btn-retirer"
+            (click)="retirerArticle(article)">
+            🗑️ Retirer
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="panier-resume">
+      <h2>Résumé</h2>
+      <div class="resume-ligne">
+        <span>Nombre d'articles:</span>
+        <span>{{ obtenirNombreArticles() }}</span>
+      </div>
+      <div class="resume-ligne total">
+        <span>Total:</span>
+        <span class="montant-total">{{ panier.montantTotal | number:'1.2-2' }} €</span>
+      </div>
+
+      <div class="actions-panier">
+        <button class="btn-vider" (click)="viderPanier()">Vider le panier</button>
+        <button class="btn-commander">Commander</button>
+      </div>
+
+      <a routerLink="/shop" class="lien-continuer">← Continuer les achats</a>
+    </div>
+  </div>
+</div>

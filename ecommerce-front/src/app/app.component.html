@@ -1,0 +1,65 @@
+<div class="app-container" *ngIf="estConnecte">
+  <!-- Barre latérale -->
+  <aside class="sidebar" [class.ouvert]="menuOuvert">
+    <div class="sidebar-header">
+      <h2>{{ title }}</h2>
+      <button class="btn-fermer-menu" (click)="toggleMenu()">✕</button>
+    </div>
+
+    <nav class="menu-principal">
+      <a
+        routerLink="/shop"
+        routerLinkActive="actif"
+        (click)="menuOuvert = false">
+        Boutique
+      </a>
+
+      <a
+        routerLink="/panier"
+        routerLinkActive="actif"
+        (click)="menuOuvert = false">
+        Panier
+        <span *ngIf="nombreArticlesPanier > 0" class="badge">{{ nombreArticlesPanier }}</span>
+      </a>
+
+      <a
+        routerLink="/contact"
+        routerLinkActive="actif"
+        (click)="menuOuvert = false">
+        Contact
+      </a>
+
+      <a
+        *ngIf="estAdmin"
+        routerLink="/admin/produits"
+        routerLinkActive="actif"
+        (click)="menuOuvert = false">
+        Gestion Produits
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="info-utilisateur" style="display: inline">
+        <span *ngIf="estAdmin" class="badge-admin" style="margin-right: 10px; margin-bottom: 10px;">Admin</span>
+        <span class="email">{{ emailUtilisateur }}</span>
+       </div>
+      <button class="btn-deconnexion" (click)="seDeconnecter()">
+        Déconnexion
+      </button>
+    </div>
+  </aside>
+
+  <!-- Contenu principal -->
+  <main class="contenu-principal">
+    <button class="btn-menu-mobile" (click)="toggleMenu()">
+      Menu
+    </button>
+
+    <router-outlet></router-outlet>
+  </main>
+</div>
+
+<!-- Page de connexion (hors layout) -->
+<div *ngIf="!estConnecte">
+  <router-outlet></router-outlet>
+</div>

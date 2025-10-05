@@ -1,0 +1,48 @@
+<div class="connexion-container">
+  <div class="connexion-card">
+    <div class="logo-section">
+      <h1>Alten E-Commerce</h1>
+      <p>Connectez-vous à votre compte</p>
+    </div>
+
+    <div *ngIf="erreur" class="message-erreur">
+      {{ erreur }}
+    </div>
+
+    <form (ngSubmit)="seConnecter()" class="formulaire-connexion">
+      <div class="champ-formulaire">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          [(ngModel)]="credentials.email"
+          name="email"
+          placeholder="votre.email@exemple.com"
+          required
+          [disabled]="chargement">
+      </div>
+
+      <div class="champ-formulaire">
+        <label for="motDePasse">Mot de passe</label>
+        <input
+          type="password"
+          id="motDePasse"
+          [(ngModel)]="credentials.motDePasse"
+          name="motDePasse"
+          placeholder="••••••••"
+          required
+          [disabled]="chargement">
+      </div>
+
+      <div class="actions-formulaire">
+        <button
+          type="submit"
+          class="btn-connexion"
+          [disabled]="chargement || !credentials.email || !credentials.motDePasse">
+          <span *ngIf="!chargement">Se connecter</span>
+          <span *ngIf="chargement">Connexion...</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,204 @@
+.contact-container {
+  padding: 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.contact-container h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 2rem 0;
+}
+
+.message-succes {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #d1fae5;
+  color: #065f46;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  border-left: 4px solid #10b981;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-succes::before {
+  content: "✓";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: #10b981;
+  color: white;
+  border-radius: 50%;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.formulaire-contact {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.champ-formulaire {
+  margin-bottom: 1.5rem;
+}
+
+.champ-formulaire:last-of-type {
+  margin-bottom: 2rem;
+}
+
+.champ-formulaire label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.champ-formulaire label::after {
+  content: " *";
+  color: #ef4444;
+}
+
+.champ-formulaire input,
+.champ-formulaire textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  color: #111827;
+  transition: all 0.2s;
+  font-family: inherit;
+  outline: none;
+}
+
+.champ-formulaire input:focus,
+.champ-formulaire textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.champ-formulaire input::placeholder,
+.champ-formulaire textarea::placeholder {
+  color: #9ca3af;
+}
+
+.champ-formulaire input.erreur,
+.champ-formulaire textarea.erreur {
+  border-color: #ef4444;
+}
+
+.champ-formulaire input.erreur:focus,
+.champ-formulaire textarea.erreur:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.champ-formulaire textarea {
+  resize: vertical;
+  min-height: 120px;
+  max-height: 300px;
+}
+
+.compteur-caracteres {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+
+.compteur-caracteres span {
+  font-size: 0.8125rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.compteur-caracteres .limite-atteinte {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.message-erreur {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ef4444;
+  font-size: 0.8125rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.message-erreur::before {
+  content: "⚠";
+  font-size: 1rem;
+}
+
+.actions-formulaire {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-envoyer {
+  padding: 0.875rem 2rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
+}
+
+.btn-envoyer:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-envoyer:active {
+  transform: translateY(0);
+}
+
+.btn-envoyer:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (max-width: 640px) {
+  .contact-container {
+    padding: 1rem;
+  }
+
+  .contact-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .formulaire-contact {
+    padding: 1.5rem;
+  }
+
+  .btn-envoyer {
+    width: 100%;
+  }
+}

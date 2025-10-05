@@ -1,0 +1,49 @@
+<div class="contact-container">
+  <h1>Contactez-nous</h1>
+
+  <div *ngIf="messageEnvoye" class="message-succes">
+    ✓ Demande de contact envoyée avec succès
+  </div>
+
+  <form (ngSubmit)="envoyerMessage()" class="formulaire-contact">
+    <div class="champ-formulaire">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        [(ngModel)]="contact.email"
+        name="email"
+        placeholder="votre.email@exemple.com"
+        [class.erreur]="erreurs['email']">
+      <span *ngIf="erreurs['email']" class="message-erreur">
+        {{ erreurs['email'] }}
+      </span>
+    </div>
+
+    <div class="champ-formulaire">
+      <label for="message">Message</label>
+      <textarea
+        id="message"
+        [(ngModel)]="contact.message"
+        name="message"
+        rows="6"
+        placeholder="Votre message..."
+        maxlength="300"
+        [class.erreur]="erreurs['message']"></textarea>
+      <div class="compteur-caracteres">
+        <span [class.limite-atteinte]="obtenirNombreCaracteres() >= 300">
+          {{ obtenirNombreCaracteres() }} / 300 caractères
+        </span>
+      </div>
+      <span *ngIf="erreurs['message']" class="message-erreur">
+        {{ erreurs['message'] }}
+      </span>
+    </div>
+
+    <div class="actions-formulaire">
+      <button type="submit" class="btn-envoyer">
+        Envoyer
+      </button>
+    </div>
+  </form>
+</div>

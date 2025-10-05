@@ -1,0 +1,9 @@
+README.md
+target/
+
+.idea/
+ecommerce-api/node_modules/
+ecommerce-front/node_modules/
+dist/
+build/
+.env
