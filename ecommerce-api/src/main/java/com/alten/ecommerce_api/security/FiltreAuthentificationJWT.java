@@ -43,7 +43,7 @@ public class FiltreAuthentificationJWT extends OncePerRequestFilter {
         final Boolean estAdmin = serviceJWT.extraireEstAdmin(jwt);
 
         if (Objects.nonNull(email) && Objects.isNull(SecurityContextHolder.getContext().getAuthentication())) {
-            if (serviceJWT.validerToken(jwt, email)) {
+            if (serviceJWT.validerToken(jwt)) {
                 List<SimpleGrantedAuthority> autorites = new ArrayList<>();
                 if (Boolean.TRUE.equals(estAdmin)) {
                     autorites.add(new SimpleGrantedAuthority("ROLE_ADMIN"));

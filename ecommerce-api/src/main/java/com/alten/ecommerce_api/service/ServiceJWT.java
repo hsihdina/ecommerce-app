@@ -71,8 +71,7 @@ public class ServiceJWT {
         return extraireDateExpiration(token).before(new Date());
     }
 
-    public Boolean validerToken(String token, String email) {
-        final String emailToken = extraireEmail(token);
-        return (emailToken.equals(email) && !estTokenExpire(token));
+    public Boolean validerToken(String token) {
+        return !estTokenExpire(token);
     }
 }
