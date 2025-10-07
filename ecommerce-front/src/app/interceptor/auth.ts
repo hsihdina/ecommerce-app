@@ -9,7 +9,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
   const token = authService.obtenirToken();
 
-  // Clone la requête et ajoute le token si disponible
+  // ajoute le token si disponible
   if (token && !req.url.includes('/account') && !req.url.includes('/token')) {
     req = req.clone({
       setHeaders: {

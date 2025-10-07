@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
   estAdmin = false;
   emailUtilisateur: string | null = null;
   nombreArticlesPanier = 0;
-  menuOuvert = false;
 
   constructor(
     public authService: AuthService,
@@ -41,9 +40,5 @@ export class AppComponent implements OnInit {
 
   seDeconnecter(): void {
     this.authService.seDeconnecter();
-  }
-
-  toggleMenu(): void {
-    this.menuOuvert = !this.menuOuvert;
   }
 }

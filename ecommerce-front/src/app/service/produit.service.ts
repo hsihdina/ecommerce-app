@@ -31,10 +31,6 @@ export class ProduitService {
     return this.http.get<PageProduits>(this.apiUrl, { params });
   }
 
-  obtenirProduit(id: number): Observable<Produit> {
-    return this.http.get<Produit>(`${this.apiUrl}/${id}`);
-  }
-
   creerProduit(produit: Partial<Produit>): Observable<Produit> {
     return this.http.post<Produit>(this.apiUrl, produit);
   }
